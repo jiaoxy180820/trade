@@ -29,7 +29,9 @@ public class Trade {
             }
 
             if (resultMap.containsKey(transactions.getSecurityCode())) {
-                if(!ActionEnum.INSERT.equals(conMap.get(transactions.getSecurityCode()))){
+                if(ActionEnum.CANCEL.equals(conMap.get(transactions.getSecurityCode()))
+                        ||(ActionEnum.UPDATE.equals(conMap.get(transactions.getSecurityCode())))&&
+                        ActionEnum.INSERT.equals(transactions.getAction())){
                     continue;
                 }
                 switch (transactions.getAction()) {
